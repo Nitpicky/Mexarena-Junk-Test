@@ -16,11 +16,11 @@ You can also open a sandbox scene and run it directly with **F6**.
 |------|------------------|
 | `scenes/main/` | Sandbox picker (the main scene) |
 | `sandboxes/<name>/` | One experiment per folder, found automatically by the menu |
-| `core/` | Code shared by two or more sandboxes (incl. the optional `DebugHud` overlay) |
+| `core/` | Shared code: the tactics core (attributes, events, cards, match, map and turn cores, combat) and the optional `DebugHud` overlay |
 | `autoload/` | `SceneRouter` (required) and the optional `Events` signal bus |
 | `data/` | Tuning Resources (`.tres`) |
 | `assets/` | Art, audio, fonts |
-| `tools/` | Headless smoke test |
+| `tools/` | Headless smoke test and logic tests |
 
 Each folder has a `CLAUDE.md` describing its architecture, conventions and a
 recap of changes. Start with the root [`CLAUDE.md`](CLAUDE.md).

@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sandboxes/tactics_arena/tactics_arena.gd" id="1_root"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/warlord.tres" id="2_warlord"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/archmage.tres" id="3_archmage"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/decks/starter_deck.tres" id="4_deck"]
+[ext_resource type="Script" path="res://core/cards/card_data.gd" id="5_card"]
+[ext_resource type="Script" path="res://core/match/rules/card_play_rule.gd" id="6_rule"]
+
+[sub_resource type="Resource" id="Resource_cards"]
+script = ExtResource("6_rule")
+starting_hand = 3
+draw_per_turn = 1
+plays_per_turn = 1
+max_hand_size = 7
+
+[node name="TacticsArena" type="Node2D"]
+script = ExtResource("1_root")
+general_cards = Array[ExtResource("5_card")]([ExtResource("2_warlord"), ExtResource("3_archmage")])
+deck = ExtResource("4_deck")
+card_play_rule = SubResource("Resource_cards")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]

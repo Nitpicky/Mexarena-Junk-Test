@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="CardData" format=3]
+
+[ext_resource type="Script" path="res://core/cards/card_data.gd" id="1_card_data"]
+[ext_resource type="Script" path="res://core/attributes/attribute.gd" id="2_attribute"]
+[ext_resource type="Script" path="res://core/combat/behaviors/reflect_damage_behavior.gd" id="3_reflect_dama"]
+[ext_resource type="Script" path="res://core/attributes/attribute_behavior.gd" id="4_attribute_be"]
+[ext_resource type="SpriteFrames" path="res://assets/art/units/duelyst/neutral_golemnature.tres" id="sprite_neutral_golemnature"]
+
+[sub_resource type="Resource" id="Resource_thorns_beh0"]
+script = ExtResource("3_reflect_dama")
+
+[sub_resource type="Resource" id="Resource_hp"]
+script = ExtResource("2_attribute")
+id = &"hp"
+display_name = "HP"
+tags = PackedStringArray("stat")
+base_value = 14.0
+is_pool = true
+
+[sub_resource type="Resource" id="Resource_attack"]
+script = ExtResource("2_attribute")
+id = &"attack"
+display_name = "Attack"
+tags = PackedStringArray("stat")
+base_value = 2.0
+
+[sub_resource type="Resource" id="Resource_range"]
+script = ExtResource("2_attribute")
+id = &"range"
+display_name = "Range"
+tags = PackedStringArray("stat")
+base_value = 1.0
+
+[sub_resource type="Resource" id="Resource_movement"]
+script = ExtResource("2_attribute")
+id = &"movement"
+display_name = "Movement"
+tags = PackedStringArray("stat")
+base_value = 2.0
+
+[sub_resource type="Resource" id="Resource_speed"]
+script = ExtResource("2_attribute")
+id = &"speed"
+display_name = "Speed"
+tags = PackedStringArray("stat")
+base_value = 7.0
+
+[sub_resource type="Resource" id="Resource_thorns"]
+script = ExtResource("2_attribute")
+id = &"thorns"
+display_name = "Thorns"
+description = "Deals its value back to attackers."
+tags = PackedStringArray("ability")
+base_value = 2.0
+behaviors = Array[ExtResource("4_attribute_be")]([SubResource("Resource_thorns_beh0")])
+
+[sub_resource type="Resource" id="Resource_size"]
+script = ExtResource("2_attribute")
+id = &"size"
+display_name = "Size"
+tags = PackedStringArray("stat")
+base_value = 28.0
+hidden = true
+
+[resource]
+script = ExtResource("1_card_data")
+id = &"thorn_golem"
+display_name = "Thorn Golem"
+description = "Big and slow. Attackers take 2 damage back."
+sprite_frames = ExtResource("sprite_neutral_golemnature")
+color = Color(0.6, 0.45, 0.35, 1)
+attributes = Array[ExtResource("2_attribute")]([SubResource("Resource_hp"), SubResource("Resource_attack"), SubResource("Resource_range"), SubResource("Resource_movement"), SubResource("Resource_speed"), SubResource("Resource_thorns"), SubResource("Resource_size")])

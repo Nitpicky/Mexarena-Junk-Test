@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://core/board/free/free_map.gd" id="1_map"]
+
+[node name="FreeMap" type="Node2D"]
+script = ExtResource("1_map")
+summon_range = 3.0

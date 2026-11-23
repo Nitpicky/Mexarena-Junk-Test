@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="CardData" format=3]
+
+[ext_resource type="Script" path="res://core/cards/card_data.gd" id="1_card_data"]
+[ext_resource type="Script" path="res://core/attributes/attribute.gd" id="2_attribute"]
+[ext_resource type="Script" path="res://core/combat/behaviors/apply_on_hit_behavior.gd" id="3_apply_on_hit"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/attributes/poison.tres" id="4_poison"]
+[ext_resource type="Script" path="res://core/attributes/attribute_behavior.gd" id="5_attribute_be"]
+[ext_resource type="SpriteFrames" path="res://assets/art/units/duelyst/f4_gloomchaser.tres" id="sprite_f4_gloomchaser"]
+
+[sub_resource type="Resource" id="Resource_venom_beh0"]
+script = ExtResource("3_apply_on_hit")
+scope = 1
+apply = ExtResource("4_poison")
+
+[sub_resource type="Resource" id="Resource_hp"]
+script = ExtResource("2_attribute")
+id = &"hp"
+display_name = "HP"
+tags = PackedStringArray("stat")
+base_value = 7.0
+is_pool = true
+
+[sub_resource type="Resource" id="Resource_attack"]
+script = ExtResource("2_attribute")
+id = &"attack"
+display_name = "Attack"
+tags = PackedStringArray("stat")
+base_value = 1.0
+
+[sub_resource type="Resource" id="Resource_range"]
+script = ExtResource("2_attribute")
+id = &"range"
+display_name = "Range"
+tags = PackedStringArray("stat")
+base_value = 2.0
+
+[sub_resource type="Resource" id="Resource_movement"]
+script = ExtResource("2_attribute")
+id = &"movement"
+display_name = "Movement"
+tags = PackedStringArray("stat")
+base_value = 3.0
+
+[sub_resource type="Resource" id="Resource_speed"]
+script = ExtResource("2_attribute")
+id = &"speed"
+display_name = "Speed"
+tags = PackedStringArray("stat")
+base_value = 12.0
+
+[sub_resource type="Resource" id="Resource_venom"]
+script = ExtResource("2_attribute")
+id = &"venom"
+display_name = "Venom"
+description = "Attacks apply Poison (1 per turn, 3 turns)."
+tags = PackedStringArray("ability")
+base_value = 0.0
+behaviors = Array[ExtResource("5_attribute_be")]([SubResource("Resource_venom_beh0")])
+
+[resource]
+script = ExtResource("1_card_data")
+id = &"venom_spitter"
+display_name = "Venom Spitter"
+description = "Its hits poison. Poisons merge into one stronger poison."
+sprite_frames = ExtResource("sprite_f4_gloomchaser")
+color = Color(0.4, 0.85, 0.6, 1)
+attributes = Array[ExtResource("2_attribute")]([SubResource("Resource_hp"), SubResource("Resource_attack"), SubResource("Resource_range"), SubResource("Resource_movement"), SubResource("Resource_speed"), SubResource("Resource_venom")])

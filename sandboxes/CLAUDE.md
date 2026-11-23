@@ -19,6 +19,7 @@ Current sandboxes:
 |-------------|------------|
 | `blank_2d/` | Empty 2D starter: Node2D, Camera2D. `# PROTOTYPE:` |
 | `blank_3d/` | Empty 3D starter: camera looking down at a ground plane, light. `# PROTOTYPE:` |
+| `tactics_arena/` | Hotseat match on the tactics core: pick hex or free-space map, Player Phase or CTB turns, 1v1 or 2v2, Generals. `# PROTOTYPE:` |
 
 ## Etiquette
 - **Starting a new sandbox:** duplicate `blank_2d` or `blank_3d` in the Godot
@@ -37,3 +38,4 @@ Current sandboxes:
 - 2026-11-23: Added `blank_2d` and `blank_3d` starters.
 - 2026-11-23: Starters no longer embed the HUD node (it is an optional
   autoload now). Marked them `# PROTOTYPE:`.
+- 2026-11-23: Added `tactics_arena` (tactics core hotseat sandbox).

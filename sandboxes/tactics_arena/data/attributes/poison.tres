@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Attribute" format=3]
+
+[ext_resource type="Script" path="res://core/attributes/attribute.gd" id="1_attribute"]
+[ext_resource type="Script" path="res://core/combat/behaviors/damage_over_time_behavior.gd" id="2_damage_over_"]
+[ext_resource type="Script" path="res://core/attributes/attribute_behavior.gd" id="3_attribute_be"]
+
+[sub_resource type="Resource" id="Resource_poison_beh0"]
+script = ExtResource("2_damage_over_")
+
+[resource]
+script = ExtResource("1_attribute")
+id = &"poison"
+display_name = "Poison"
+description = "Takes its value as damage at turn start. Stacks into one poison."
+tags = PackedStringArray("status")
+base_value = 1.0
+duration = 3
+behaviors = Array[ExtResource("3_attribute_be")]([SubResource("Resource_poison_beh0")])

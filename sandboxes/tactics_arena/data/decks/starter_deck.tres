@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DeckData" format=3]
+
+[ext_resource type="Script" path="res://core/cards/deck_data.gd" id="1_deck_data"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/footman.tres" id="2_footman"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/archer.tres" id="3_archer"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/scout.tres" id="4_scout"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/venom_spitter.tres" id="5_venom_spitte"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/thorn_golem.tres" id="6_thorn_golem"]
+[ext_resource type="Resource" path="res://sandboxes/tactics_arena/data/cards/berserker.tres" id="7_berserker"]
+[ext_resource type="Script" path="res://core/cards/card_data.gd" id="8_card_data"]
+
+[resource]
+script = ExtResource("1_deck_data")
+display_name = "Starter deck"
+cards = Array[ExtResource("8_card_data")]([ExtResource("2_footman"), ExtResource("2_footman"), ExtResource("2_footman"), ExtResource("3_archer"), ExtResource("3_archer"), ExtResource("4_scout"), ExtResource("4_scout"), ExtResource("5_venom_spitte"), ExtResource("5_venom_spitte"), ExtResource("6_thorn_golem"), ExtResource("7_berserker"), ExtResource("7_berserker")])
