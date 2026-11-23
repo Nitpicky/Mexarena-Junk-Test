@@ -55,12 +55,15 @@ person asks for, inside a sandbox, and keep shared code generic.
 project.godot        engine config, autoloads, main scene = scenes/main/main.tscn
 autoload/            global singletons (Events signal bus, SceneRouter)
 core/debug/          DebugHud: optional overlay autoload (PROTOTYPE)
+core/events|attributes|units|cards|match|board|turns|combat/
+                     the tactics core: attribute system, event bus, cards and
+                     zones, match frame + rules, swappable map and turn cores
 scenes/main/         the sandbox picker menu (entry point)
 sandboxes/<name>/    one self-contained experiment per folder: <name>/<name>.tscn
 core/                code promoted out of sandboxes once 2+ sandboxes need it
 data/                Resource files (.tres) for tuning values
 assets/              art, audio, fonts (placeholders are fine)
-tools/               smoke test and other dev tooling
+tools/               smoke test, logic tests (tools/tests/) and other dev tooling
 addons/              third-party Godot plugins (ask first; create on first one)
 .github/workflows/   CI: smoke test on every PR and push to main
 ```
@@ -114,8 +117,19 @@ godot --headless --path . res://tools/smoke_test.tscn
 ```
 Exit code 0 and no `SCRIPT ERROR` lines means it passes. See `tools/CLAUDE.md`.
 CI runs the same check on every PR (`.github/workflows/smoke-test.yml`); a PR
-is ready for review only once that check is green. Cloud Claude sessions cannot
-run the Godot binary directly, so they rely on this CI check.
+is ready for review only once that check is green. Cloud Claude sessions can
+also download the official Godot 4.7.2 Linux build into their scratchpad and
+run it headless; with `xvfb-run` and `--rendering-driver opengl3` they can
+even take screenshots to check a sandbox visually.
+
+## Game design (as told by the person, 2026-11-23)
+Card-based tactical PvP, 1v1 and 2v2, hotseat for now. Units hold
+Attributes (stats, statuses, buffs: no hard-coded stats). Cards in hand
+summon units with the card's attributes. Each player starts with a chosen
+General; a team with no General left loses. Swappable cores: map (hex grid vs
+free space with a movement circle) and turns (Player Phase vs CTB). Open:
+buff stacking order, deck sourcing, costs, spells, summon placement. See each
+`core/*/CLAUDE.md` for what is decided and what is a placeholder.
 
 ## Keeping these docs alive
 Every relevant directory has a `CLAUDE.md` with three parts: **Architecture**,
@@ -134,3 +148,7 @@ Recap log. New directories that hold code or content get their own `CLAUDE.md`.
 - 2026-11-23: Reworked scaffold to match the build rules: HUD is now the
   optional `DebugHud` autoload, `SceneRouter` no longer requires `Events`,
   throwaway code marked `# PROTOTYPE:`, smoke test added to CI.
+- 2026-11-23: Added the tactics core (`core/events`, `attributes`, `units`,
+  `cards`, `match`, `board`, `turns`, `combat`), the `tactics_arena` sandbox,
+  logic tests in `tools/tests/`, the game design summary, and committed the
+  `.uid` / `.import` files Godot generates.
