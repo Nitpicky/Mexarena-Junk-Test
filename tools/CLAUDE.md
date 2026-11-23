@@ -12,7 +12,9 @@ Dev tooling that is not part of the game.
   modifiers, durations, behaviors, hex distances, every map x turn core
   combination (summon, move, attack, poison, thorns, win), Player Phase
   rules, CTB order and 2v2. It builds its own cards, so it never depends on a
-  sandbox. Delete `tests/` and the smoke test just skips it.
+  sandbox. `test_unit_visuals.gd` checks the animated sprite module
+  (attach, fallback, idle/run/cast/caststart/death). Delete `tests/` and the
+  smoke test just skips it.
 
 ## Etiquette
 - Run the smoke test before every PR:
@@ -32,3 +34,4 @@ Dev tooling that is not part of the game.
 - 2026-11-23: Added the headless smoke test.
 - 2026-11-23: Smoke test now also runs in CI.
 - 2026-11-23: Smoke test also runs `tests/test_*.gd`; added `test_tactics_core.gd`.
+- 2026-11-23: Added `test_unit_visuals.gd`.
