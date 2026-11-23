@@ -1,0 +1,49 @@
+name: Smoke test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: "4.7.2"
+  GODOT_ZIP: Godot_v4.7.2-stable_linux.x86_64.zip
+  GODOT_BIN: Godot_v4.7.2-stable_linux.x86_64
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Godot (checksum verified)
+        run: |
+          base="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+          curl -fsSL -o "$GODOT_ZIP" "$base/$GODOT_ZIP"
+          curl -fsSL -o SHA512-SUMS.txt "$base/SHA512-SUMS.txt"
+          grep " ${GODOT_ZIP}\$" SHA512-SUMS.txt | sha512sum -c -
+          unzip -q "$GODOT_ZIP" -d "$RUNNER_TEMP/godot"
+          chmod +x "$RUNNER_TEMP/godot/$GODOT_BIN"
+          echo "GODOT=$RUNNER_TEMP/godot/$GODOT_BIN" >> "$GITHUB_ENV"
+          rm "$GODOT_ZIP" SHA512-SUMS.txt
+
+      - name: Import project
+        run: timeout 300 "$GODOT" --headless --path . --import 2>&1 | tee import.log
+
+      - name: Run smoke test
+        run: |
+          set +e
+          timeout 300 "$GODOT" --headless --path . res://tools/smoke_test.tscn 2>&1 | tee smoke.log
+          code=${PIPESTATUS[0]}
+          set -e
+          if [ "$code" -ne 0 ]; then
+            echo "::error::Smoke test exited with code $code"
+            exit 1
+          fi
+          if grep -E "SCRIPT ERROR|^ERROR:|Parse Error" import.log smoke.log; then
+            echo "::error::Godot reported errors (see lines above)"
+            exit 1
+          fi
+          echo "Smoke test passed."

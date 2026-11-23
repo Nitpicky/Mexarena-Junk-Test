@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Events="*res://autoload/events.gd"
 SceneRouter="*res://autoload/scene_router.gd"
+DebugHud="*res://core/debug/sandbox_hud.gd"
 
 [display]
 

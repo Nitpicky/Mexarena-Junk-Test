@@ -1,7 +1,6 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://sandboxes/blank_3d/blank_3d.gd" id="1_root"]
-[ext_resource type="Script" path="res://core/debug/sandbox_hud.gd" id="2_hud"]
 
 [sub_resource type="Environment" id="Environment_bg"]
 background_mode = 1
@@ -29,6 +28,3 @@ current = true
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_ground")
-
-[node name="SandboxHud" type="CanvasLayer" parent="."]
-script = ExtResource("2_hud")

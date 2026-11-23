@@ -16,8 +16,8 @@ You can also open a sandbox scene and run it directly with **F6**.
 |------|------------------|
 | `scenes/main/` | Sandbox picker (the main scene) |
 | `sandboxes/<name>/` | One experiment per folder, found automatically by the menu |
-| `core/` | Code shared by two or more sandboxes |
-| `autoload/` | `Events` signal bus and `SceneRouter` |
+| `core/` | Code shared by two or more sandboxes (incl. the optional `DebugHud` overlay) |
+| `autoload/` | `SceneRouter` (required) and the optional `Events` signal bus |
 | `data/` | Tuning Resources (`.tres`) |
 | `assets/` | Art, audio, fonts |
 | `tools/` | Headless smoke test |
@@ -35,7 +35,8 @@ fix the script path in the scene. It shows up in the menu on the next run.
 godot --headless --path . --import
 godot --headless --path . res://tools/smoke_test.tscn
 ```
-Exit code 0 and no `SCRIPT ERROR` lines means every scene loads.
+Exit code 0 and no `SCRIPT ERROR` lines means every scene loads. GitHub Actions
+runs the same check on every PR.
 
 ## Large files
 Binary assets are marked in `.gitattributes`. If the repo gets heavy, enable

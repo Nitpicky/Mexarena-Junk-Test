@@ -4,6 +4,9 @@ extends Node
 ## Finds sandboxes, switches between them and the menu, and owns the global
 ## iteration hotkeys: Esc goes back to the menu, F5 reloads the current sandbox.
 ## The hotkeys also work when a sandbox scene is launched directly with F6.
+##
+## Part of the required frame (with scenes/main/). It has no hard dependencies:
+## the Events autoload is used only if it exists.
 
 const MENU_SCENE := "res://scenes/main/main.tscn"
 const SANDBOX_ROOT := "res://sandboxes"
@@ -64,7 +67,9 @@ func open_sandbox(sandbox_name: String) -> void:
 		push_error("SceneRouter: no sandbox scene at %s" % path)
 		return
 	get_tree().paused = false
-	Events.sandbox_opened.emit(sandbox_name)
+	var events := get_node_or_null(^"/root/Events")
+	if events:
+		events.emit_signal(&"sandbox_opened", sandbox_name)
 	get_tree().change_scene_to_file(path)
 
 

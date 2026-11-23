@@ -1,2 +1,2 @@
 extends Node2D
-## Empty 2D sandbox. Duplicate this folder to start a new 2D experiment.
+## PROTOTYPE: empty 2D starter. Duplicate this folder to start a 2D experiment.

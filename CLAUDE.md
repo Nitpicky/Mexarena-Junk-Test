@@ -54,17 +54,26 @@ person asks for, inside a sandbox, and keep shared code generic.
 ```
 project.godot        engine config, autoloads, main scene = scenes/main/main.tscn
 autoload/            global singletons (Events signal bus, SceneRouter)
+core/debug/          DebugHud: optional overlay autoload (PROTOTYPE)
 scenes/main/         the sandbox picker menu (entry point)
 sandboxes/<name>/    one self-contained experiment per folder: <name>/<name>.tscn
 core/                code promoted out of sandboxes once 2+ sandboxes need it
 data/                Resource files (.tres) for tuning values
 assets/              art, audio, fonts (placeholders are fine)
 tools/               smoke test and other dev tooling
-addons/              third-party Godot plugins (create when the first one is added)
+addons/              third-party Godot plugins (ask first; create on first one)
+.github/workflows/   CI: smoke test on every PR and push to main
 ```
 Flow: `main.tscn` asks `SceneRouter` for sandboxes, shows a button per sandbox,
 and `SceneRouter` switches scenes. In any sandbox, **Esc** returns to the menu
 and **F5** reloads it.
+
+**Required frame vs removable modules.** The only required pieces are the
+frame: `scenes/main/` (menu) and `SceneRouter`. Everything else is a module
+that can be deleted: each sandbox (delete its folder), `Events` and `DebugHud`
+(delete the file or folder plus one autoload line in `project.godot`), and any
+`core/` subfolder. Optional modules are reached with
+`get_node_or_null(^"/root/Name")` so nothing breaks when they are gone.
 
 **Promotion rule:** new ideas start inside a sandbox folder. When a second
 sandbox needs the same code, move it to `core/` and update both. Sandboxes may
@@ -104,6 +113,9 @@ godot --headless --path . --import
 godot --headless --path . res://tools/smoke_test.tscn
 ```
 Exit code 0 and no `SCRIPT ERROR` lines means it passes. See `tools/CLAUDE.md`.
+CI runs the same check on every PR (`.github/workflows/smoke-test.yml`); a PR
+is ready for review only once that check is green. Cloud Claude sessions cannot
+run the Godot binary directly, so they rely on this CI check.
 
 ## Keeping these docs alive
 Every relevant directory has a `CLAUDE.md` with three parts: **Architecture**,
@@ -119,3 +131,6 @@ Recap log. New directories that hold code or content get their own `CLAUDE.md`.
 - 2026-11-23: Added rules: ask before addons, modular and removable modules,
   reusable but strippable resources, must run before review, recap per change,
   `# PROTOTYPE:` marker for throwaway code.
+- 2026-11-23: Reworked scaffold to match the build rules: HUD is now the
+  optional `DebugHud` autoload, `SceneRouter` no longer requires `Events`,
+  throwaway code marked `# PROTOTYPE:`, smoke test added to CI.

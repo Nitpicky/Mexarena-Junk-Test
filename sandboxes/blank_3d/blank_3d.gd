@@ -1,3 +1,3 @@
 extends Node3D
-## Empty 3D sandbox (camera, light, ground plane). Duplicate this folder to
-## start a new 3D experiment.
+## PROTOTYPE: empty 3D starter (camera, light, ground plane). Duplicate this
+## folder to start a 3D experiment.
