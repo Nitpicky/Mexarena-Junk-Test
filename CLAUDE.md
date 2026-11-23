@@ -28,6 +28,27 @@ person asks for, inside a sandbox, and keep shared code generic.
   implemented, say so plainly: what clashes, why, and the options. Agree on a
   conclusion with the person, then rework the earlier implementation to match.
   Do not silently work around or silently rewrite it.
+- **Ask before adding any plugin or addon.** Name it, say why it is needed and
+  what it replaces, and wait for a yes before adding anything to `addons/` or
+  enabling it.
+
+## Build rules
+- **Modular and removable.** Every module (a sandbox, a `core/` system, an
+  autoload) must be self-contained and easy to delete. Deleting its folder,
+  plus at most one listed line elsewhere (an autoload entry, for example),
+  must leave the project running. Each module's CLAUDE.md lists what depends
+  on it and how to remove it.
+- **Reusable but strippable resources.** Design `Resource` types to be generic
+  enough to reuse for many different things (small, composable, no assumptions
+  about one use), but easy to strip out: nothing should break if a resource or
+  one of its fields is removed beyond the code that directly uses it.
+- **Must run before review.** A PR is only ready for review once the project
+  has actually run (smoke test passing). If it could not be run, the PR stays a
+  draft and says so.
+- **Keep a recap.** Every change adds a dated line to the Recap of each
+  CLAUDE.md it affects, in the same commit.
+- **Mark throwaway code** with a `# PROTOTYPE:` comment saying what is
+  temporary and why, so it is easy to find with a search and replace later.
 
 ## Architecture at a glance
 ```
@@ -95,3 +116,6 @@ Recap log. New directories that hold code or content get their own `CLAUDE.md`.
   SceneRouter hotkeys, SandboxHud overlay, blank 2D and 3D sandboxes, smoke test.
 - 2026-11-23: Added collaboration rules (question phase + restate, challenge
   earlier work that clashes with new goals).
+- 2026-11-23: Added rules: ask before addons, modular and removable modules,
+  reusable but strippable resources, must run before review, recap per change,
+  `# PROTOTYPE:` marker for throwaway code.
