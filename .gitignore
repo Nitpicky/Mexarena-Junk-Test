@@ -1,0 +1,24 @@
+# Godot 4 editor cache and imported assets (regenerated on open)
+.godot/
+
+# Godot 3 leftovers, just in case
+.import/
+
+# Export output and Android build template
+/build/
+/export/
+/android/
+
+# Export credentials live in .godot/ in 4.x; keep presets committed.
+# export_presets.cfg
+
+# OS and editor junk
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Local Claude settings (shared settings in .claude/settings.json stay committed)
+.claude/settings.local.json
