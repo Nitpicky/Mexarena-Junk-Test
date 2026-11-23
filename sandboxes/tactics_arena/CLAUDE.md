@@ -12,6 +12,9 @@ Hotseat sandbox for the tactics core (`core/events`, `attributes`, `units`,
 - `setup_panel.gd`: map core, turn core, 1v1 / 2v2, General per player.
 - `match_hud.gd`: status bar + end turn, players and turn order (left), unit
   inspector and log (right), hand (bottom), game over panel.
+- Every card names a sprite set (`sprite_frames`, from
+  `assets/art/units/duelyst/`). Units get an animated body through
+  `UnitAnimator` (`core/visuals/`); cards in hand show the idle animation.
 - `data/cards/`: Generals (`warlord`, `archmage`) and units (`footman`,
   `archer`, `scout`, `venom_spitter`, `thorn_golem`, `berserker`).
   `data/attributes/poison.tres` (applied by Venom). `data/decks/starter_deck.tres`.
@@ -34,3 +37,4 @@ Depends on the tactics core in `core/`. To remove: delete this folder.
 ## Recap
 - 2026-11-23: Created: setup screen, hex/free maps x Player Phase/CTB, 1v1
   and 2v2 hotseat, 8 cards, starter deck.
+- 2026-11-23: Animated Duelyst sprites on board units and hand cards; taller hand bar.

@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://core/attributes/attribute.gd" id="2_attribute"]
 [ext_resource type="Script" path="res://core/combat/behaviors/reflect_damage_behavior.gd" id="3_reflect_dama"]
 [ext_resource type="Script" path="res://core/attributes/attribute_behavior.gd" id="4_attribute_be"]
+[ext_resource type="SpriteFrames" path="res://assets/art/units/duelyst/neutral_golemnature.tres" id="sprite_neutral_golemnature"]
 
 [sub_resource type="Resource" id="Resource_thorns_beh0"]
 script = ExtResource("3_reflect_dama")
@@ -66,5 +67,6 @@ script = ExtResource("1_card_data")
 id = &"thorn_golem"
 display_name = "Thorn Golem"
 description = "Big and slow. Attackers take 2 damage back."
+sprite_frames = ExtResource("sprite_neutral_golemnature")
 color = Color(0.6, 0.45, 0.35, 1)
 attributes = Array[ExtResource("2_attribute")]([SubResource("Resource_hp"), SubResource("Resource_attack"), SubResource("Resource_range"), SubResource("Resource_movement"), SubResource("Resource_speed"), SubResource("Resource_thorns"), SubResource("Resource_size")])

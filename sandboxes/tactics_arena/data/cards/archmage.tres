@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://core/cards/card_data.gd" id="1_card_data"]
 [ext_resource type="Script" path="res://core/attributes/attribute.gd" id="2_attribute"]
+[ext_resource type="SpriteFrames" path="res://assets/art/units/duelyst/f4_general.tres" id="sprite_f4_general"]
 
 [sub_resource type="Resource" id="Resource_hp"]
 script = ExtResource("2_attribute")
@@ -44,6 +45,7 @@ script = ExtResource("1_card_data")
 id = &"archmage"
 display_name = "Archmage"
 description = "General. Fragile but strikes from 3 range."
+sprite_frames = ExtResource("sprite_f4_general")
 color = Color(0.55, 0.5, 0.95, 1)
 tags = PackedStringArray("general")
 attributes = Array[ExtResource("2_attribute")]([SubResource("Resource_hp"), SubResource("Resource_attack"), SubResource("Resource_range"), SubResource("Resource_movement"), SubResource("Resource_speed")])

@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://core/attributes/attribute.gd" id="2_attribute"]
 [ext_resource type="Script" path="res://core/combat/behaviors/heal_over_time_behavior.gd" id="3_heal_over_ti"]
 [ext_resource type="Script" path="res://core/attributes/attribute_behavior.gd" id="4_attribute_be"]
+[ext_resource type="SpriteFrames" path="res://assets/art/units/duelyst/f1_general.tres" id="sprite_f1_general"]
 
 [sub_resource type="Resource" id="Resource_regeneration_beh0"]
 script = ExtResource("3_heal_over_ti")
@@ -58,6 +59,7 @@ script = ExtResource("1_card_data")
 id = &"warlord"
 display_name = "Warlord"
 description = "General. Sturdy melee leader that regenerates."
+sprite_frames = ExtResource("sprite_f1_general")
 color = Color(0.85, 0.55, 0.3, 1)
 tags = PackedStringArray("general")
 attributes = Array[ExtResource("2_attribute")]([SubResource("Resource_hp"), SubResource("Resource_attack"), SubResource("Resource_range"), SubResource("Resource_movement"), SubResource("Resource_speed"), SubResource("Resource_regeneration")])

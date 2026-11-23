@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://core/cards/card_data.gd" id="1_card_data"]
 [ext_resource type="Script" path="res://core/attributes/attribute.gd" id="2_attribute"]
+[ext_resource type="SpriteFrames" path="res://assets/art/units/duelyst/f3_badlandsscout.tres" id="sprite_f3_badlandsscout"]
 
 [sub_resource type="Resource" id="Resource_hp"]
 script = ExtResource("2_attribute")
@@ -44,5 +45,6 @@ script = ExtResource("1_card_data")
 id = &"scout"
 display_name = "Scout"
 description = "Fast and far-moving, hits softly."
+sprite_frames = ExtResource("sprite_f3_badlandsscout")
 color = Color(0.95, 0.85, 0.4, 1)
 attributes = Array[ExtResource("2_attribute")]([SubResource("Resource_hp"), SubResource("Resource_attack"), SubResource("Resource_range"), SubResource("Resource_movement"), SubResource("Resource_speed")])

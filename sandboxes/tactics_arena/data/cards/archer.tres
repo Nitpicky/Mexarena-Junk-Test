@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://core/cards/card_data.gd" id="1_card_data"]
 [ext_resource type="Script" path="res://core/attributes/attribute.gd" id="2_attribute"]
+[ext_resource type="SpriteFrames" path="res://assets/art/units/duelyst/f1_ranged.tres" id="sprite_f1_ranged"]
 
 [sub_resource type="Resource" id="Resource_hp"]
 script = ExtResource("2_attribute")
@@ -44,5 +45,6 @@ script = ExtResource("1_card_data")
 id = &"archer"
 display_name = "Archer"
 description = "Shoots from 3 range."
+sprite_frames = ExtResource("sprite_f1_ranged")
 color = Color(0.5, 0.8, 0.45, 1)
 attributes = Array[ExtResource("2_attribute")]([SubResource("Resource_hp"), SubResource("Resource_attack"), SubResource("Resource_range"), SubResource("Resource_movement"), SubResource("Resource_speed")])

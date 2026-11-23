@@ -46,7 +46,7 @@ func build(p_game: TacticsMatch, p_core_label: String) -> void:
 	top_row.add_child(_button("New setup", func() -> void: setup_pressed.emit()))
 
 	var left := _panel(Vector2(0, 80), Vector2(250, 0), Control.PRESET_LEFT_WIDE)
-	left.offset_bottom = -140
+	left.offset_bottom = -160
 	var left_box := VBoxContainer.new()
 	left.add_child(left_box)
 	_left = Label.new()
@@ -55,7 +55,7 @@ func build(p_game: TacticsMatch, p_core_label: String) -> void:
 
 	var right := _panel(Vector2(0, 80), Vector2(300, 0), Control.PRESET_RIGHT_WIDE)
 	right.offset_left = -300
-	right.offset_bottom = -140
+	right.offset_bottom = -160
 	var right_box := VBoxContainer.new()
 	right.add_child(right_box)
 	_inspector = _rich(right_box)
@@ -66,7 +66,7 @@ func build(p_game: TacticsMatch, p_core_label: String) -> void:
 	_log.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_log.scroll_following = true
 
-	var bottom := _panel(Vector2(0, -130), Vector2(0, 130), Control.PRESET_BOTTOM_WIDE)
+	var bottom := _panel(Vector2(0, -150), Vector2(0, 150), Control.PRESET_BOTTOM_WIDE)
 	var scroll := ScrollContainer.new()
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	bottom.add_child(scroll)
@@ -176,15 +176,44 @@ func _refresh_hand(player: int, player_name: String) -> void:
 	var state := game.players[player]
 	var can_play := game.turns.can_play_card(player) and state.card_plays_left != 0
 	for card: CardData in state.hand.cards:
-		var button := _button("%s\n%s" % [card.label(), _short_stats(card)], card_selected.emit.bind(card))
-		button.custom_minimum_size = Vector2(150, 105)
-		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		button.tooltip_text = card.description
-		button.disabled = not can_play
-		button.toggle_mode = true
-		button.button_pressed = card == pending_card
-		button.modulate = card.color.lightened(0.4)
-		_hand.add_child(button)
+		_hand.add_child(_card_button(card, can_play))
+
+
+func _card_button(card: CardData, can_play: bool) -> Button:
+	var button := _button("", card_selected.emit.bind(card))
+	button.custom_minimum_size = Vector2(160, 132)
+	button.tooltip_text = "%s\n%s" % [card.label(), card.description]
+	button.disabled = not can_play
+	button.toggle_mode = true
+	button.button_pressed = card == pending_card
+	button.clip_contents = true
+	var label := Label.new()
+	label.text = "%s\n%s" % [card.label(), _short_stats(card)]
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 11)
+	label.add_theme_color_override("font_color", card.color.lightened(0.45))
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	label.add_theme_constant_override("outline_size", 4)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	label.offset_top = -54
+	if card.sprite_frames:
+		# PROTOTYPE: card art = the unit's idle animation, feet above the text.
+		var art := AnimatedSprite2D.new()
+		art.sprite_frames = card.sprite_frames
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		art.offset = Vector2(0, UnitAnimator.feet_offset(card.sprite_frames))
+		art.position = Vector2(80, 74)
+		art.play(UnitAnimator.resolve(card.sprite_frames, &"idle"))
+		if not can_play:
+			art.modulate = Color(1, 1, 1, 0.45)
+		button.add_child(art)
+	else:
+		label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	button.add_child(label)
+	return button
 
 
 func _refresh_inspector() -> void:

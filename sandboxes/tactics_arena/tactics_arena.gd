@@ -21,7 +21,7 @@ const TURN_CORES := {
 ## Player colors in MatchConfig order (A1, B1, A2, B2): team A blue, team B red.
 const PLAYER_COLORS: Array[Color] = [Color(0.35, 0.6, 1.0), Color(1.0, 0.4, 0.35), Color(0.4, 0.9, 0.95), Color(1.0, 0.7, 0.3)]
 ## Screen space the HUD leaves for the board: left, top, right, bottom margins.
-const BOARD_MARGINS := Vector4(260, 84, 310, 140)
+const BOARD_MARGINS := Vector4(260, 84, 310, 160)
 
 ## Cards offered as Generals on the setup screen.
 @export var general_cards: Array[CardData] = []
@@ -82,6 +82,8 @@ func _start_match(map_name: String, turn_name: String, generals: Array[CardData]
 	_hud.card_selected.connect(_on_card_selected)
 	_hud.setup_pressed.connect(_show_setup)
 	_game.state_changed.connect(_refresh_board)
+	# Optional: animated sprites for cards that name a sprite set (core/visuals/).
+	_game.unit_added.connect(func(unit: Unit) -> void: UnitAnimator.attach(unit, _game))
 	_game.start()
 	_frame_camera()
 	_refresh_board()
