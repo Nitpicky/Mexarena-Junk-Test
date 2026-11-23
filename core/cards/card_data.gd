@@ -7,6 +7,9 @@ extends Resource
 @export var display_name: String
 @export_multiline var description: String
 @export var art: Texture2D
+## Optional animated sprite set for the unit and the card (see core/visuals/).
+## Leave empty and the unit uses the placeholder look.
+@export var sprite_frames: SpriteFrames
 ## PROTOTYPE: tint used for the placeholder card and unit look.
 @export var color: Color = Color(0.75, 0.75, 0.75)
 ## Free labels: "general" marks cards that can be picked as a General.

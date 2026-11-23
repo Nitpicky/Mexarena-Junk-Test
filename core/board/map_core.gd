@@ -33,6 +33,7 @@ func setup(p_game: TacticsMatch) -> void:
 	overlay.draw.connect(_draw_overlay)
 	units_root = Node2D.new()
 	units_root.name = "Units"
+	units_root.y_sort_enabled = true
 	add_child(units_root)
 	game.bus.subscribe(GameEvents.TURN_STARTED, _on_turn_started, 90)
 	_setup_map()

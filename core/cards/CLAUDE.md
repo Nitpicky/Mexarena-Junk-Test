@@ -3,7 +3,7 @@
 ## Architecture
 | File | What |
 |------|------|
-| `card_data.gd` (`CardData`, Resource) | A card: `id`, `display_name`, `description`, `art`, `color`, `tags` ("general" marks General picks), `attributes` given to the summoned unit. |
+| `card_data.gd` (`CardData`, Resource) | A card: `id`, `display_name`, `description`, `art`, `sprite_frames` (optional animated set, see `core/visuals/`), `color`, `tags` ("general" marks General picks), `attributes` given to the summoned unit. |
 | `card_zone.gd` (`CardZone`) | An ordered pile (deck, hand, discard). `add`, `remove`, `draw_top`, `shuffle`, `max_size`. Top = end of the array. |
 | `deck_data.gd` (`DeckData`, Resource) | A card list, turned into a deck zone by `build_zone()`. `# PROTOTYPE:` deck sourcing. |
 
@@ -21,3 +21,4 @@ Depends on `core/attributes/`. Used by `match` and the tactics sandbox.
 
 ## Recap
 - 2026-11-23: Created.
+- 2026-11-23: Added `sprite_frames` to CardData.

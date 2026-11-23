@@ -55,7 +55,7 @@ person asks for, inside a sandbox, and keep shared code generic.
 project.godot        engine config, autoloads, main scene = scenes/main/main.tscn
 autoload/            global singletons (Events signal bus, SceneRouter)
 core/debug/          DebugHud: optional overlay autoload (PROTOTYPE)
-core/events|attributes|units|cards|match|board|turns|combat/
+core/events|attributes|units|cards|match|board|turns|combat|visuals/
                      the tactics core: attribute system, event bus, cards and
                      zones, match frame + rules, swappable map and turn cores
 scenes/main/         the sandbox picker menu (entry point)
@@ -152,3 +152,6 @@ Recap log. New directories that hold code or content get their own `CLAUDE.md`.
   `cards`, `match`, `board`, `turns`, `combat`), the `tactics_arena` sandbox,
   logic tests in `tools/tests/`, the game design summary, and committed the
   `.uid` / `.import` files Godot generates.
+- 2026-11-23: Added animated unit sprites: `core/visuals/` (UnitAnimator),
+  8 Duelyst sprite sets (CC0) in `assets/art/units/duelyst/`, cards name a
+  sprite set, and hand cards show it.

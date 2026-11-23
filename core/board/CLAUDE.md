@@ -29,3 +29,4 @@ folder and its entry in the sandbox's `MAP_CORES`.
 
 ## Recap
 - 2026-11-23: Created MapCore, HexMap, FreeMap.
+- 2026-11-23: `Units` node is y-sorted so lower units draw in front.

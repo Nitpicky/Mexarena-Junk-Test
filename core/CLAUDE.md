@@ -14,6 +14,7 @@ subfolder.
 | `match/` | `TacticsMatch`, configs, player state, rule modules (Generals win rule, card play rule). | `events`, `attributes`, `units`, `cards`, `board`, `turns` | idem |
 | `board/` | Map cores: `MapCore` + `hex/` (HexMap) + `free/` (FreeMap). | `events`, `units`, `match` | One core: delete its subfolder + its sandbox entry. |
 | `turns/` | Turn cores: `TurnCore` + `player_phase/` + `ctb/`. | `events`, `units`, `match` | One core: delete its subfolder + its sandbox entry. |
+| `visuals/` | `UnitAnimator`: optional animated sprite bodies from `CardData.sprite_frames`, driven by match events. | `events`, `units`, `cards`, `match`, `board` | Delete the folder, its test and the sandbox lines using it: units fall back to discs. |
 | `combat/` | `Combat` helpers + attribute behaviors (poison, regen, thorns, on-hit). | `events`, `attributes`, `units`, `match` | Delete with the tactics sandbox (or rewrite its attack calls). |
 
 The eight tactics modules form one family ("tactics core"). The whole family
@@ -42,3 +43,4 @@ is removed by deleting those folders, `sandboxes/tactics_arena/` and
   cards, match, board, turns, combat). It went straight to `core/` with one
   sandbox using it, against the "two sandboxes" rule, because it is the
   game's foundation and every future core experiment will reuse it.
+- 2026-11-23: Added `visuals/` (UnitAnimator). Unit draws its hp bar above children; units are y-sorted.
