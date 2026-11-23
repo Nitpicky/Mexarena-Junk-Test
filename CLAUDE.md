@@ -19,6 +19,16 @@ person asks for, inside a sandbox, and keep shared code generic.
   (for example one scouts `sandboxes/`, another scouts `core/`). Never more than 3.
 - The main agent verifies anything a scout reports before acting on it.
 
+## Working with the person (collaboration rules)
+- **Question phase first.** Before starting any task, ask a thorough round of
+  clarifying questions, and restate the ask in your own words so you both
+  confirm you are on the same wavelength. Do not start building until the
+  person confirms the restated ask.
+- **Challenge earlier work.** If a new goal clashes with something already
+  implemented, say so plainly: what clashes, why, and the options. Agree on a
+  conclusion with the person, then rework the earlier implementation to match.
+  Do not silently work around or silently rewrite it.
+
 ## Architecture at a glance
 ```
 project.godot        engine config, autoloads, main scene = scenes/main/main.tscn
@@ -83,3 +93,5 @@ Recap log. New directories that hold code or content get their own `CLAUDE.md`.
 ## Recap
 - 2026-11-23: Repo bootstrapped. Godot 4.7.2 skeleton, sandbox menu,
   SceneRouter hotkeys, SandboxHud overlay, blank 2D and 3D sandboxes, smoke test.
+- 2026-11-23: Added collaboration rules (question phase + restate, challenge
+  earlier work that clashes with new goals).
